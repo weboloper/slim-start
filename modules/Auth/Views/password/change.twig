@@ -1,0 +1,38 @@
+{% extends "templates/base.twig" %}
+
+{% block title %}Auth Home{% endblock %}
+{% block head %}{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-6 offset-md-3">
+		    <form action="{{ path_for('auth.password.change') }}" method="post">
+		    	<legend>Change password</legend>
+		  
+		    	<div class="form-group">
+		    		<label>Current password</label>
+		    		<input name="password" type="password" class="form-control{{ errors.password ? ' is-invalid' : '' }}"  autocomplete="off">
+		    		{% if errors.password %}
+		    			<div class="invalid-feedback">{{ errors.password | first }}</div>
+		    		{% endif %}
+		    	</div>
+
+		    	<div class="form-group">
+		    		<label>New password</label>
+		    		<input name="new_password" type="password" class="form-control{{ errors.new_password ? ' is-invalid' : '' }}"  autocomplete="off">
+		    		{% if errors.new_password %}
+		    			<div class="invalid-feedback">{{ errors.new_password | first }}</div>
+		    		{% endif %}
+		    	</div>
+ 
+
+
+		    	<button class="btn btn-primary">Change password</button>
+
+		    	{{ csrf.field | raw }}
+		    </form>
+		</div>
+	</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

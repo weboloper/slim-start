@@ -1,0 +1,37 @@
+{% extends "templates/base.twig" %}
+
+{% block title %}Auth Home{% endblock %}
+{% block head %}{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-6 offset-md-3">
+		    <form action="{{ path_for('auth.password.reset') }}" method="post">
+		    	<legend>Reset password</legend>
+		  	
+		    	<div class="form-group">
+		    		<label>Password</label>
+		    		<input name="password" type="password" class="form-control{{ errors.password ? ' is-invalid' : '' }}"  autocomplete="off">
+		    		{% if errors.password %}
+		    			<div class="invalid-feedback">{{ errors.password | first }}</div>
+		    		{% endif %}
+		    	</div>
+		    	<div class="form-group">
+		    		<label>Password (again)</label>
+		    		<input name="password_again" type="password" class="form-control{{ errors.password_again ? ' is-invalid' : '' }}"  autocomplete="off">
+		    		{% if errors.password_again %}
+		    			<div class="invalid-feedback">{{ errors.password_again | first }}</div>
+		    		{% endif %}
+		    	</div>
+
+		    	<input type="hidden" name="email" value="{{ container.request.getParam('email') }}">
+		    	<input type="hidden" name="identifier" value="{{ container.request.getParam('identifier') }}">
+
+		    	<button class="btn btn-primary">Reset password</button>
+		    	{{ csrf.field | raw }}
+		    </form>
+		</div>
+	</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

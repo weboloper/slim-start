@@ -1,0 +1,37 @@
+{% extends "templates/base.twig" %}
+
+{% block title %}Auth Home{% endblock %}
+{% block head %}{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-md-6 offset-md-3">
+		    <form action="{{ path_for('auth.login')}}" method="post">
+		    	<legend>Login</legend>
+		    	<div class="form-group">
+		    		<label>Email</label>
+		    		<input name="email" type="email" class="form-control{{ errors.email ? ' is-invalid' : '' }}" autocomplete="off">
+		    		{% if errors.email %} 
+		    			<div class="invalid-feedback">{{ errors.email | first }}</div>
+		    		{% endif %}
+		    	</div>
+		    	<div class="form-group">
+		    		<label>Password</label>
+		    		<input name="password" type="password" class="form-control{{ errors.password ? ' is-invalid' : '' }}"  autocomplete="off">
+		    		{% if errors.password %}
+		    			<div class="invalid-feedback">{{ errors.password | first }}</div>
+		    		{% endif %}
+		    	</div>
+		    	<div class="form-group form-check">
+				    <input type="checkbox" class="form-check-input" name="rememberme">
+				    <label class="form-check-label">Remember me</label>
+				 </div>
+		    	<button class="btn btn-primary">Login</button> <a href="{{ path_for('auth.password.recover') }}" class="btn btn-link">Forget password?</a>
+
+		    	{{ csrf.field | raw }}
+		    </form>
+		</div>
+	</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

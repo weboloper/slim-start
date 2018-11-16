@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+	
+	RewriteBase /
+	RewriteRule ^(resources)($|/) - [NC,L]
+
+	
+
+	RewriteRule  ^$ public/    [L]
+	RewriteRule  (.*) public/$1 [L]
+	RewriteRule ^w/(\d+)*$ ./public/w/$1
+
+ 	
+</IfModule>
