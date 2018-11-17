@@ -26,8 +26,8 @@ class AuthController extends Controller
 
 			'username'			=>	v::noWhiteSpace()->notEmpty()->alnum()->userLoginAvailable()->setName('Username'),
 			'email'				=>	v::noWhiteSpace()->notEmpty()->email()->emailAvailable()->setName('E-mail'),
-			'password'			=>	v::noWhiteSpace()->notEmpty()->setName('Password'),
-			'password_again'	=>	v::noWhiteSpace()->notEmpty()->setName('Password')->passwordMatch( $request->getParam('password')),
+			'password'			=>	v::noWhiteSpace()->notEmpty()->length(6, 50)->setName('Password'),
+			'password_again'	=>	v::noWhiteSpace()->notEmpty()->length(6, 50)->setName('Password')->passwordMatch( $request->getParam('password')),
 		]);
 
 		if ($validation->failed()) {
@@ -75,7 +75,7 @@ class AuthController extends Controller
 		$validation = $this->validator->validate($request,[
 			// 'username'	=>	v::noWhiteSpace()->notEmpty()->alnum()->userLoginAvailable()->setName('Username'),
 			'email'		=>	v::noWhiteSpace()->notEmpty()->email()->setName('E-mail'),
-			'password'	=>	v::noWhiteSpace()->notEmpty()->setName('Password'),
+			'password'	=>	v::noWhiteSpace()->notEmpty()->length(6, 50)->setName('Password'),
 		]);
 
 		if ($validation->failed()) {

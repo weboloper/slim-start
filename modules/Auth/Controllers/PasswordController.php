@@ -17,8 +17,8 @@ class PasswordController extends Controller
 	public function postChangePassword($request, $response)
 	{	
 		$validation = $this->validator->validate($request,[
-			'password'		=>	v::noWhiteSpace()->notEmpty()->passwordCheck($this->auth->user())->setName('Current password'),
-			'new_password'	=>	v::noWhiteSpace()->notEmpty()->setName('New password'),
+			'password'		=>	v::noWhiteSpace()->notEmpty()->length(6, 50)->passwordCheck($this->auth->user())->setName('Current password'),
+			'new_password'	=>	v::noWhiteSpace()->notEmpty()->length(6, 50)->setName('New password'),
 			// 'user_pass_again'	=>	v::noWhiteSpace()->notEmpty(),
 		]);
 
@@ -167,8 +167,8 @@ class PasswordController extends Controller
 		$validation = $this->validator->validate($request,[
 			'email'				=>	v::noWhiteSpace()->notEmpty()->email(),
 			'identifier'		=>	v::noWhiteSpace()->notEmpty(),
-			'password'			=>	v::noWhiteSpace()->notEmpty()->setName('Password'),
-			'password_again'	=>	v::noWhiteSpace()->notEmpty()->setName('Password')->passwordMatch( $request->getParam('password')),
+			'password'			=>	v::noWhiteSpace()->notEmpty()->length(6, 50)->setName('Password'),
+			'password_again'	=>	v::noWhiteSpace()->notEmpty()->length(6, 50)->setName('Password')->passwordMatch( $request->getParam('password')),
 		]);
 
 		if ($validation->failed()) {
