@@ -186,5 +186,49 @@ class AuthController extends Controller
 	}
 
 
+
+
+
+	public function test_mail()
+	{
+		try {
+		    //Server settings
+		    $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+		    $mail->isSMTP();                                      // Set mailer to use SMTP
+		    $mail->Host = 'HOST';  // Specify main and backup SMTP servers
+		    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+		    $mail->Username = 'USERNAME';                 // SMTP username
+		    $mail->Password = 'PASSWORD';                           // SMTP password
+		    $mail->SMTPSecure = '';                            // Enable TLS encryption, `ssl` also accepted
+		    $mail->Port = 26;                                    // TCP port to connect to
+
+		    //Recipients
+		    $mail->setFrom('from@example.com', 'Mailer');
+		    $mail->addAddress('test@gmail.com', 'Joe User');     // Add a recipient
+ 
+
+		    //Content
+		    $mail->isHTML(true);                                  // Set email format to HTML
+		    $mail->Subject = 'Here is the subject';
+		    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+		    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+		    $mail->send();
+		    
+		} catch (Exception $e) {
+		    die(var_dump( 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo ));
+		}
+		try {
+			$this->mail->send('@Auth/email/registered.twig', ['url' => 'google.com'] , function($message)      {
+				$message->to( "test@gmail.com" );
+				$message->subject('You are registered');
+			}); 
+			// die(var_dump(88));
+		} catch (Exception $e) {
+		    die(var_dump($e->getMessage()));
+		}
+	}
+
+
 	
 }

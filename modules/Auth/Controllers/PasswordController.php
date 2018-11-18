@@ -36,43 +36,6 @@ class PasswordController extends Controller
 
 	public function getPasswordRecover($request, $response)
 	{	
-		// $mail = new \PHPMailer\PHPMailer\PHPMailer(true);                              // Passing `true` enables exceptions
-		// try {
-		//     //Server settings
-		//     $mail->SMTPDebug = 0;                                 // Enable verbose debug output
-		//     $mail->isSMTP();                                      // Set mailer to use SMTP
-		//     $mail->Host = 'ams204.hawkhost.com';  // Specify main and backup SMTP servers
-		//     $mail->SMTPAuth = true;                               // Enable SMTP authentication
-		//     $mail->Username = 'devoloper@projeksen.com';                 // SMTP username
-		//     $mail->Password = 'mhm5112077';                           // SMTP password
-		//     $mail->SMTPSecure = '';                            // Enable TLS encryption, `ssl` also accepted
-		//     $mail->Port = 26;                                    // TCP port to connect to
-
-		//     //Recipients
-		//     $mail->setFrom('from@example.com', 'Mailer');
-		//     $mail->addAddress('test@gmail.com', 'Joe User');     // Add a recipient
- 
-
-		//     //Content
-		//     $mail->isHTML(true);                                  // Set email format to HTML
-		//     $mail->Subject = 'Here is the subject';
-		//     $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-		//     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-		//     $mail->send();
-		    
-		// } catch (Exception $e) {
-		//     die(var_dump( 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo ));
-		// }
-		// try {
-		// 	$this->mail->send('@Auth/email/registered.twig', ['url' => 'google.com'] , function($message)      {
-		// 		$message->to( "test@safafakkmkmkmkmkkmkksfafsafete.com" );
-		// 		$message->subject('You are registered');
-		// 	}); 
-		// 	// die(var_dump(88));
-		// } catch (Exception $e) {
-		//     die(var_dump($e->getMessage()));
-		// }
 
  		return $this->view->render($response, '@Auth\password\recover.twig');
 	}
