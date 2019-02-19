@@ -21,8 +21,8 @@ class AuthController extends Controller
 	public function postRegister($request, $response)
 	{	
 		$validation = $this->validator->validate($request,[
-			'firstname'			=>	v::noWhiteSpace()->notEmpty()->setName('Firstname'),
-			'lastname'			=>	v::noWhiteSpace()->notEmpty()->setName('Lastname'),
+			'firstname'			=>	v::notEmpty()->setName('Firstname'),
+			'lastname'			=>	v::notEmpty()->setName('Lastname'),
 
 			'username'			=>	v::noWhiteSpace()->notEmpty()->alnum()->userLoginAvailable()->setName('Username'),
 			'email'				=>	v::noWhiteSpace()->notEmpty()->email()->emailAvailable()->setName('E-mail'),

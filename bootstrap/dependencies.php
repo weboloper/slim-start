@@ -33,10 +33,15 @@ $container['flash'] = function ($container) {
 // views
 $container['view'] = function($container) {
 
-	$view = new \Slim\Views\Twig(__DIR__. '/../resources/views/' . getenv('APP_THEME','default') , [
-		'cache' => false,
+	// $view = new \Slim\Views\Twig(__DIR__. '/../resources/views/' . getenv('APP_THEME','default') , [
+	// 	'cache' => false,
+ //        'debug' => true,
+	// ]);
+
+    $view = new \Slim\Views\Twig(__DIR__. '/../resources/themes/'.$container['settings']['app']['theme'].'/views/'   , [
+        'cache' => false,
         'debug' => true,
-	]);
+    ]);
 
 	$modulePath = __DIR__.'/../modules/';
 	// $modulePath = __DIR__.'/../app/modules/';
@@ -56,6 +61,11 @@ $container['view'] = function($container) {
 		$container->router,
 		$container->request->getUri()
 	));
+    // $view->addExtension(new \App\Twig\TwigCustomExtension(
+    //     $container->router,
+    //     $container->request->getUri(),
+    //     $container['settings']
+    // ));
     $view->addExtension(new Twig_Extension_Debug());
 
     $view->getEnvironment()->addGlobal('container', [

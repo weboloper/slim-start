@@ -8,7 +8,8 @@ return [
             'name'      => getenv('APP_NAME','Slim Auth'),
             'desc'      => getenv('APP_DESC','Slim php startup project with Authentication, Twig, Flash and PHPMailer'),
             'url'       => getenv('APP_URL','http://slimauth.dev'),  // base_url() already works in views
-            'auth_id'   => getenv('AUTH_ID','user_r')
+            'auth_id'   => getenv('AUTH_ID','user_r'),
+            'theme'     => getenv('APP_THEME','default'),
         ],
 
         'db' => [
